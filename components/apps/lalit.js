@@ -183,18 +183,20 @@ function Skills() {
             </div>
             <ul className=" tracking-tight text-sm md:text-base w-10/12 emoji-list">
                 <li className=" list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
-                    I've worked with a wide variety of programming languages & frameworks.
+                    I've worked with a range of cybersecurity tools, programming languages, and digital forensics frameworks.
                 </li>
                 <li className=" list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
-                    <div> My areas of expertise are <strong className="text-ubt-gedit-orange">front-end development, React.js & javascript!</strong></div>
+                    <div> My areas of expertise are  <strong className="text-ubt-gedit-orange">cybersecurity, digital forensics, ethical hacking, and Linux!</strong></div>
                 </li>
                 <li className=" list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
-                    <div>Here are my most frequently used</div>
+                    <div>Here are my most frequently used - </div>
                 </li>
             </ul>
             <div className="w-full md:w-10/12 flex mt-4">
-                <div className=" text-sm text-center md:text-base w-1/2 font-bold">Languages & Tools</div>
-                <div className=" text-sm text-center md:text-base w-1/2 font-bold">Frameworks & Libraries</div>
+                <div className=" text-sm text-center md:text-base w-1/2 font-bold">🛠️ Languages & Scripting</div>
+                <div className=" text-sm text-center md:text-base w-1/2 font-bold">🧰 Cybersecurity & Forensics Tools</div>
+                 <div className=" text-sm text-center md:text-base w-1/2 font-bold">🖥️ Operating Systems & Virtualization</div>
+                 <div className=" text-sm text-center md:text-base w-1/2 font-bold">📁 Version Control & Collaboration</div>
             </div>
             <div className="w-full md:w-10/12 flex justify-center items-start font-bold text-center">
                 <div className="px-2 w-1/2">
