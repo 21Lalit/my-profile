@@ -31,7 +31,8 @@ jobs:
       - name: Building 🧱
         run: yarn build
         env:
-          NEXT_PUBLIC_TRACKING_ID: G-1LNFE8D5YJ
+          NEXT_PUBLIC_TRACKING_ID: G-XXXXXXXXX
+          NEXT_PUBLIC_SERVICE_ID: Service_ID
      
 
       - name: Exporting Bundle Files 🎪
