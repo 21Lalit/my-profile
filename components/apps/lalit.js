@@ -308,7 +308,7 @@ function Projects() {
             description: [
                 "Developed a comprehensive photography website utilizing Bootstrap for responsive design, alongside HTML, CSS, and JavaScript for front-end development. Implemented PHP and MySQL for dynamic content management and data storage, hosted on an Apache2 server. This project showcases a blend of technical skills in web development and design, emphasizing a user-friendly interface and visually appealing presentation of photographic works.",
             ],
-            domains: ["PHP", "Apache". "Bootstrap", "CSS", "HTML", "javascript"]
+            domains: ["PHP", "Apache", "Bootstrap", "CSS", "HTML", "javascript"]
         },
         {
             name: "Library Management System",
