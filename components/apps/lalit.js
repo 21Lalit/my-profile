@@ -256,7 +256,7 @@ function Skills() {
             {/* Final Linux badge with emoji */}
             <ul className="tracking-tight text-sm md:text-base w-10/12 emoji-list mt-4">
                 <li className="list-arrow mt-4 leading-tight tracking-tight">
-                    <span> And of course,</span> <img className="inline ml-1" src="http://img.shields.io/badge/-Linux-0078D6?style=plastic&logo=linux&logoColor=ffffff" alt="Lalit linux" /> <span>!</span>
+                    <span> Administration in ,</span> <img className="inline ml-1" src="http://img.shields.io/badge/-Linux-0078D6?style=plastic&logo=linux&logoColor=ffffff" alt="Lalit linux" /> <span>!</span>
                 </li>
             </ul>
         </>
@@ -266,92 +266,65 @@ function Skills() {
 function Projects() {
     const project_list = [
         {
-            name: "UbuntuOS Portfolio",
-            date: "Apr 2021",
-            link: "https://github.com/Lalit9patel/Lalit9patel.github.io",
+            name: "Cisco Packet Tracer - Networking Projects",
+            date: "Sp 2024",
+            link: "https://github.com/21Lalit/Networking-projects",
             description: [
-                "Personal portfolio website of theme Ubuntu 20.04, made using NEXT.js & tailwind CSS",
+                "This repository contains This repository provides a comprehensive learning experience, taking you from beginner to advanced networking concepts with practical simulations and real-world configurations. Each project includes a detailed README.md to guide your understanding step-by-step.",
             ],
-            domains: ["javascript", "next.js", "tailwindcss"]
+            domains: ["CCNA", "Cisco Networking"]
         },
         {
-            name: "Chrome Extension React Bolierplate",
-            date: "Dec 2021",
-            link: "https://github.com/Lalit9patel/chrome-extension-react-boilerplate",
+            name: "File Integrity Checker",
+            date: "Jun 2024",
+            link: "https://github.com/21Lalit/Powershell-Scripting/tree/main/File%20Integrity%20Checker",
             description: [
-                "A boilerplate code to build a chrome extension with react and webpack",
+                "The PowerShell File Integrity Checker compares the hash values of an original file and a received file, alerting users if the received file has been modified. This ensures file integrity during transfers or updates. I tested the tool by adding a space in Notepad, and the hash value changed, confirming that the file was modified.",
             ],
-            domains: ["javascript", "chrome-extension"]
+            domains: ["Powershell Scripting"]
         },
         {
-            name: "CodeConnect",
-            date: "Nov 2021",
-            link: "https://github.com/21Lalit/21Lalit",
+            name: "User Activity Monitoring (Windows Forensic)",
+            date: "Jun 2024",
+            link: "https://github.com/21Lalit/Powershell-Scripting/tree/main/User%20Log%20Activities",
             description: [
-                "A multi-language pair-programming platform with the features of video meeting and whiteboard. Built with React.js, Tailwind CSS, Chakra UI, Express & Socket.io.",
+                "This involves a simple PowerShell script that logs key user activities on a Windows system, such as login times, running processes, and active windows. The script can save the logged information into files for analysis or auditing purposes.",
             ],
-            domains: ["javascript", "tailwindcss"]
+            domains: ["Powershell Scripting", "Computer Forensics"]
         },
         {
-            name: "Ad Free Spotify",
-            date: "Jun 2021",
-            link: "https://github.com/Lalit9patel/ad-free-spotify",
+            name: "Password Strength Checker",
+            date: "May 2024",
+            link: "https://github.com/21Lalit/Batch-Scripting/tree/main/Password-Strength-Checker",
             description: [
-                "Chrome extension to automatically mute/unmute Spotify tab when Advertisement starts and ends!",
+                "The Password Strength Checker is a Batch script tool that evaluates the strength of a password based on criteria such as length, character variety (uppercase, lowercase, digits, and special characters), and overall complexity. It provides users with feedback on the strength of their passwords, encouraging the creation of more secure credentials to enhance data protection.",
             ],
-            domains: ["javascript", "chrome-extension"]
+            domains: ["Windows Batch Scripting"]
         },
         {
-            name: "economist.com Unlocked",
-            date: "Mar 2021",
-            link: "https://github.com/Lalit9patel/economist.com-unlocked",
+            name: "Photography Website",
+            date: "Oct 2023",
+            link: "https://github.com/21Lalit",
             description: [
-                "A chrome extension to read Paid Articles for Free & with no Ads, no subscription, no memberships!",
+                "Developed a comprehensive photography website utilizing Bootstrap for responsive design, alongside HTML, CSS, and JavaScript for front-end development. Implemented PHP and MySQL for dynamic content management and data storage, hosted on an Apache2 server. This project showcases a blend of technical skills in web development and design, emphasizing a user-friendly interface and visually appealing presentation of photographic works.",
             ],
-            domains: ["javascript", "chrome-extension"]
+            domains: ["PHP", "Apache". "Bootstrap_Framework", "CSS", "HTML", "javascript"]
         },
         {
-            name: "Flutter banking app",
-            date: "Jan 2021",
-            link: "https://github.com/Lalit9patel/flutter-banking-app",
+            name: "Library Management System",
+            date: "Nov 2022",
+            link: "https://github.com/21Lalit",
             description: [
-                "A Flutter & Firebase project for creating transactions between different Users and displaying the history of transactions done by all.",
+                "Created a basic library management system using HTML, CSS, JavaScript, and Bootstrap. The project featured a responsive design and allowed users to view and search for books, demonstrating foundational web development skills.",
             ],
-            domains: ["flutter", "firestore", "dart", "firebase auth"]
+            domains: ["HTML", "CSS", "javascript"]
         },
         {
-            name: "CPU scheduling application",
+            name: "College Website",
             date: "Dec 2020",
-            link: "https://github.com/Lalit9patel/CPU-Scheduling-APP-React-Native",
+            link: "https://github.com/21Lalit",
             description: [
-                "React Native Application to visualize the CPU Scheduling algorithms with different Processes and Animations with gannt chart.",
-            ],
-            domains: ["react-native", "javascript"]
-        },
-        {
-            name: "Meditech Healthcare WebApp",
-            date: "Nov 2020",
-            link: "https://github.com/Lalit9patel/Meditech-Healthcare",
-            description: [
-                "Developed Web Application to predict and diagnose diseases from x-ray images.",
-            ],
-            domains: ["javascript", "html5", "sass", "firebase", "tensorflow"]
-        },
-        {
-            name: "Problem Recommendation System",
-            date: "Sep 2020",
-            link: "https://github.com/Lalit9patel/Improve-Codeforces",
-            description: [
-                "Django web application to suggest practice problems from the areas in which the user struggles to get pass in code-forces.",
-            ],
-            domains: ["django", "python", "codeforces-api", "javascript"]
-        },
-        {
-            name: "Cleanliness Automation",
-            date: "Dec 2019",
-            link: "https://github.com/Lalit9patel/CPU-Scheduling-APP-React-Native",
-            description: [
-                "Developed Web Applications to automate Garbage collection and extraction systems for SSIP hackathon",
+                "Designed and developed the frontend of the college website using HTML and CSS, incorporating a responsive layout and a feature for online fee payment.",
             ],
         }
     ];
@@ -384,7 +357,7 @@ function Projects() {
                     <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
                 </div>
             </div>
-            <iframe src="https://github.com/sponsors/Lalit9patel/card" title="Sponsor Lalit9patel" className='my-4 w-5/6 md:w-3/4' ></iframe>
+            <iframe src="https://github.com/21Lalit/" title="Lalit Profile" className='my-4 w-5/6 md:w-3/4' ></iframe>
 
             {
                 project_list.map((project, index) => {
@@ -396,7 +369,7 @@ function Projects() {
                                 <div className="flex flex-wrap justify-between items-center">
                                     <div className='flex justify-center items-center'>
                                         <div className=" text-base md:text-lg mr-2">{project.name.toLowerCase()}</div>
-                                        <iframe src={`https://ghbtns.com/github-btn.html?user=Lalit9patel&repo=${projectName}&type=star&count=true`} frameBorder="0" scrolling="0" width="150" height="20" title={project.name.toLowerCase()+"-star"}></iframe>
+                                        // iframe tag daal sakte ho idhar
                                     </div>
                                     <div className="text-gray-300 font-light text-sm">{project.date}</div>
                                 </div>
