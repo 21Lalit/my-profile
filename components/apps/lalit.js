@@ -400,6 +400,6 @@ function Projects() {
 }
 function Resume() {
     return (
-        <iframe className="h-full w-full" src="https://github.com/21Lalit/my-profile/blob/master/public/files/LALIT-CV.pdf" title="Lalit Rohilla resume" frameBorder="0"></iframe>
+        <iframe className="h-full w-full" src="https://raw.githubusercontent.com/21Lalit/my-profile/master/public/files/LALIT-CV.pdf" title="Lalit Rohilla resume" frameBorder="0"></iframe>
     )
 }
