@@ -148,7 +148,7 @@ function Education() {
                         NSUT
                     </div>
                     <div className=" text-sm text-gray-400 mt-0.5">2025 - 2027</div>
-                    <div className=" text-sm md:text-base"Mtech in Information Security</div>
+                    <div className=" text-sm md:text-base">Mtech in Information Security</div>
                     <div className="text-sm text-gray-300 font-bold mt-1">Expected &nbsp; May 2027</div>
                 </li>
                 <li className="list-disc">
