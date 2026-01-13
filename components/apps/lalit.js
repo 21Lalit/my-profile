@@ -145,11 +145,11 @@ function Education() {
             <ul className=" w-10/12  mt-4 ml-4 px-0 md:px-1">
                 <li className="list-disc">
                     <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        IGNOU
+                        NSUT
                     </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2024 - 2025</div>
-                    <div className=" text-sm md:text-base">Post Graduate Diploma in Information Security - PGDIS</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">Expected &nbsp; May 2025</div>
+                    <div className=" text-sm text-gray-400 mt-0.5">2025 - 2027</div>
+                    <div className=" text-sm md:text-base"Mtech in Information Security</div>
+                    <div className="text-sm text-gray-300 font-bold mt-1">Expected &nbsp; May 2027</div>
                 </li>
                 <li className="list-disc">
                     <div className=" text-lg md:text-xl mt-4 text-left font-bold leading-tight">
