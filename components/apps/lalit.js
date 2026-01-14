@@ -400,6 +400,6 @@ function Projects() {
 }
 function Resume() {
     return (
-        <iframe className="h-full w-full" src=./files/LALIT-CV.pdf" title="Lalit Rohilla resume" frameBorder="0"></iframe>
+        <iframe className="h-full w-full" src="./files/LALIT-CV.pdf" title="Lalit Rohilla resume" frameBorder="0"></iframe>
     )
 }
