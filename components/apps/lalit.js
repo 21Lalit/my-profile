@@ -157,7 +157,7 @@ function Education() {
                     </div>
                     <div className=" text-sm text-gray-400 mt-0.5">2021 - 2024</div>
                     <div className=" text-sm md:text-base">Computer Science Engineering</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">CGPA &nbsp; 7.28</div>
+                    <div className="text-sm text-gray-300 font-bold mt-1">CGPA &nbsp; 6.9</div>
                 </li>
                 <li className="list-disc mt-5">
                     <div className=" text-lg md:text-xl text-left font-bold leading-tight">
@@ -165,7 +165,7 @@ function Education() {
                     </div>
                     <div className=" text-sm text-gray-400 mt-0.5">2018 - 2021</div>
                     <div className=" text-sm md:text-base">Computer Engineering</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">CGPA &nbsp; 7.25</div>
+                    <div className="text-sm text-gray-300 font-bold mt-1">CGPA &nbsp; 6.8</div>
                 </li>
             </ul>
         </>
