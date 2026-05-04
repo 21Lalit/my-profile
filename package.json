@@ -2,7 +2,7 @@
   "name": "lalit-portfolio",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://my-ubuntu-profile.vercel.app/",
+  "homepage": "https://21lalit.github.io/my-profile/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
