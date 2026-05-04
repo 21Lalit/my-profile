@@ -1,256 +1,240 @@
-import React, { Component } from 'react'
-import $ from 'jquery';
-const Parser = require('expr-eval').Parser;
+import React, { Component } from 'react';
+const { Parser } = require('expr-eval');
 
 const parser = new Parser({
     operators: {
-      // These default to true, but are included to be explicit
-      add: true,
-      concatenate: true,
-      conditional: true,
-      divide: true,
-      factorial: true,
-      multiply: true,
-      power: true,
-      remainder: true,
-      subtract: true,
-
-      // Disable and, or, not, <, ==, !=, etc.
-      logical: false,
-      comparison: false,
-
-      // Disable 'in' and = operators
-      'in': false,
-      assignment: true
+        add: true,
+        concatenate: true,
+        conditional: true,
+        divide: true,
+        factorial: true,
+        multiply: true,
+        power: true,
+        remainder: true,
+        subtract: true,
+        logical: false,
+        comparison: false,
+        'in': false,
+        assignment: false,
     }
-  });
+});
 
 export class Calc extends Component {
-    constructor() {
-        super();
-        this.cursor = "";
-        this.terminal_rows = 2;
-        this.prev_commands = [];
-        this.commands_index = -1;
-        this.variables={}
+    constructor(props) {
+        super(props);
         this.state = {
-            terminal: [],
-        }
+            expression: '',
+            result: '0',
+            error: false,
+            justEvaluated: false,
+        };
     }
 
     componentDidMount() {
-        this.reStartTerminal();
-    }
-
-    componentDidUpdate() {
-        clearInterval(this.cursor);
-        this.startCursor(this.terminal_rows - 2);
+        window.addEventListener('keydown', this.handleKeyboard);
     }
 
     componentWillUnmount() {
-        clearInterval(this.cursor);
+        window.removeEventListener('keydown', this.handleKeyboard);
     }
 
-    reStartTerminal = () => {
-        clearInterval(this.cursor);
-        $('#calculator-body').empty();
-        this.appendTerminalRow();
+    handleKeyboard = (e) => {
+        const key = e.key;
+        if ('0123456789'.includes(key)) { this.appendToExpr(key); return; }
+        if ('+-*/%^()'.includes(key)) { this.appendToExpr(key); return; }
+        if (key === '.') { this.appendToExpr('.'); return; }
+        if (key === 'Enter' || key === '=') { e.preventDefault(); this.evaluate(); return; }
+        if (key === 'Backspace') { this.backspace(); return; }
+        if (key === 'Escape') { this.clear(); return; }
     }
 
-    appendTerminalRow = () => {
-        let terminal = this.state.terminal;
-        terminal.push(this.terminalRow(this.terminal_rows));
-        this.setState({ terminal });
-        this.terminal_rows += 2;
+    appendToExpr = (value) => {
+        this.setState(prev => {
+            let expr = prev.justEvaluated && /^[+\-*/%^]$/.test(value)
+                ? prev.result + value
+                : prev.justEvaluated
+                    ? value
+                    : prev.expression + value;
+            return { expression: expr, justEvaluated: false, error: false };
+        }, this.liveEvaluate);
     }
 
-    terminalRow = (id) => {
-        return (
-
-            <React.Fragment key={id}>
-                <div className=" flex p-2 text-ubt-grey opacity-100 mt-1 float-left font-normal "></div>
-                <div className="flex w-full h-5">
-                        <div className=" flex text-ubt-green h-1 mr-2"> {';'} </div>
-                    <div id="cmd" onClick={this.focusCursor} className=" bg-transperent relative flex-1 overflow-hidden">
-                        <span id={`show-calculator-${id}`} className=" float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider"></span>
-                        <div id={`cursor-${id}`} className=" float-left mt-1 w-1.5 h-3.5 bg-white"></div>
-                        <input id={`calculator-input-${id}`} data-row-id={id} onKeyDown={this.checkKey} onBlur={this.unFocusCursor} className=" absolute top-0 left-0 w-full opacity-0 outline-none bg-transparent" spellCheck={false} autoFocus={true} autoComplete="off" type="text" />
-                    </div>
-                </div>
-                <div id={`row-calculator-result-${id}`} className={"my-2 font-normal"}></div>
-            </React.Fragment>
-        );
-
+    liveEvaluate = () => {
+        const { expression } = this.state;
+        if (!expression) { this.setState({ result: '0', error: false }); return; }
+        try {
+            const val = parser.evaluate(expression);
+            const formatted = Number.isFinite(val)
+                ? parseFloat(val.toFixed(10)).toString()
+                : String(val);
+            this.setState({ result: formatted, error: false });
+        } catch (_) {
+            // don't show error while typing
+        }
     }
 
-    focusCursor = (e) => {
-        clearInterval(this.cursor);
-        this.startCursor($(e.target).data("row-id"));
+    evaluate = () => {
+        const { expression } = this.state;
+        if (!expression) return;
+        try {
+            const val = parser.evaluate(expression);
+            const formatted = Number.isFinite(val)
+                ? parseFloat(val.toFixed(10)).toString()
+                : String(val);
+            this.setState({ result: formatted, expression: expression, error: false, justEvaluated: true });
+        } catch (e) {
+            this.setState({ result: 'Error', error: true, justEvaluated: false });
+        }
     }
 
-    unFocusCursor = (e) => {
-        this.stopCursor($(e.target).data("row-id"));
+    clear = () => {
+        this.setState({ expression: '', result: '0', error: false, justEvaluated: false });
     }
 
-    startCursor = (id) => {
-        clearInterval(this.cursor);
-        $(`input#calculator-input-${id}`).trigger("focus");
-        // On input change, set current text in span
-        $(`input#calculator-input-${id}`).on("input", function () {
-            $(`#cmd span#show-calculator-${id}`).text($(this).val());
-        });
-        this.cursor = window.setInterval(function () {
-            if ($(`#cursor-${id}`).css('visibility') === 'visible') {
-                $(`#cursor-${id}`).css({ visibility: 'hidden' });
+    backspace = () => {
+        this.setState(prev => {
+            if (prev.justEvaluated) return { expression: '', result: '0', justEvaluated: false };
+            const expr = prev.expression.slice(0, -1);
+            return { expression: expr, justEvaluated: false };
+        }, this.liveEvaluate);
+    }
+
+    negate = () => {
+        this.setState(prev => {
+            let expr = prev.expression;
+            if (!expr) return {};
+            if (expr.startsWith('(-') && expr.endsWith(')')) {
+                expr = expr.slice(2, -1);
             } else {
-                $(`#cursor-${id}`).css({ visibility: 'visible' });
+                expr = '(-' + expr + ')';
             }
-        }, 500);
+            return { expression: expr, justEvaluated: false };
+        }, this.liveEvaluate);
     }
 
-    stopCursor = (id) => {
-        clearInterval(this.cursor);
-        $(`#cursor-${id}`).css({ visibility: 'visible' });
-    }
-
-    removeCursor = (id) => {
-        this.stopCursor(id);
-        $(`#cursor-${id}`).css({ display: 'none' });
-    }
-
-    clearInput = (id) => {
-        $(`input#calculator-input-${id}`).trigger("blur");
-    }
-
-    checkKey = (e) => {
-        if (e.key === "Enter") {
-            let terminal_row_id = $(e.target).data("row-id");
-            let command = $(`input#calculator-input-${terminal_row_id}`).val().trim();
-            if (command.length !== 0) {
-                this.removeCursor(terminal_row_id);
-                this.handleCommands(command, terminal_row_id);
-            }
-            else return;
-            // push to history
-            this.prev_commands.push(command);
-            this.commands_index = this.prev_commands.length - 1;
-
-            this.clearInput(terminal_row_id);
-        }
-        else if (e.key === "ArrowUp") {
-            let prev_command;
-
-            if (this.commands_index <= -1) prev_command = "";
-            else prev_command = this.prev_commands[this.commands_index];
-
-            let terminal_row_id = $(e.target).data("row-id");
-
-            $(`input#calculator-input-${terminal_row_id}`).val(prev_command);
-            $(`#show-calculator-${terminal_row_id}`).text(prev_command);
-
-            this.commands_index--;
-        }
-        else if (e.key === "ArrowDown") {
-            let prev_command;
-
-            if (this.commands_index >= this.prev_commands.length) return;
-            if (this.commands_index <= -1) this.commands_index = 0;
-
-            if (this.commands_index === this.prev_commands.length) prev_command = "";
-            else prev_command = this.prev_commands[this.commands_index];
-
-            let terminal_row_id = $(e.target).data("row-id");
-
-            $(`input#calculator-input-${terminal_row_id}`).val(prev_command);
-            $(`#show-calculator-${terminal_row_id}`).text(prev_command);
-
-            this.commands_index++;
+    handleButton = (label) => {
+        switch (label) {
+            case 'C': return this.clear();
+            case 'CE': return this.backspace();
+            case '=': return this.evaluate();
+            case '+/-': return this.negate();
+            case 'x²': return this.appendToExpr('^2');
+            case 'xʸ': return this.appendToExpr('^');
+            case '!': return this.appendToExpr('!');
+            case 'π': return this.appendToExpr('PI');
+            case 'e': return this.appendToExpr('E');
+            case 'sin': return this.appendToExpr('sin(');
+            case 'cos': return this.appendToExpr('cos(');
+            case 'tan': return this.appendToExpr('tan(');
+            case 'asin': return this.appendToExpr('asin(');
+            case 'acos': return this.appendToExpr('acos(');
+            case 'atan': return this.appendToExpr('atan(');
+            case 'ln': return this.appendToExpr('ln(');
+            case 'log': return this.appendToExpr('log10(');
+            case '√': return this.appendToExpr('sqrt(');
+            default: return this.appendToExpr(label);
         }
     }
 
-    closeTerminal = () => {
-        $("#close-calc").trigger('click');
+    renderButton = (label, extraClasses) => {
+        return (
+            <button
+                key={label}
+                onClick={() => this.handleButton(label)}
+                className={'flex items-center justify-center rounded-lg text-sm font-semibold cursor-pointer select-none transition-all duration-100 active:scale-95 ' + extraClasses}
+                style={{ minHeight: '2.4rem' }}
+            >
+                {label}
+            </button>
+        );
     }
-
-    handleCommands = (command, rowId) => {
-        let words = command.split(' ').filter(Boolean);
-        let main = words[0];
-        // words.shift()
-        let result = "";
-        switch (main) {        
-            case "clear":
-                this.reStartTerminal();
-                return;
-            case "exit":
-                this.closeTerminal();
-                return;
-            case "help":                
-                result = "Available Commands: <br/>Operators:<br/> addition ( + ), subtraction ( - ),<br/>multiplication ( * ), division ( / ),<br/>modulo ( % )exponentiation. ( ^ )<br/><br/>Mathematical functions:<br/>abs[x] : Absolute value (magnitude) of x<br/>acos[x] : Arc cosine of x (in radians)<br/>acosh[x] : Hyperbolic arc cosine of x (in radians)<br/>asin[x] : Arc sine of x (in radians)<br/>asinh[x] : Hyperbolic arc sine of x (in radians)<br/>atan[x] : Arc tangent of x (in radians)<br/>atanh[x] : Hyperbolic arc tangent of x (in radians)<br/>cbrt[x] : Cube root of x<br/>ceil[x] : Ceiling of x — the smallest integer that’s >= x<br/>cos[x] : Cosine of x (x is in radians)<br/>cosh[x] : Hyperbolic cosine of x (x is in radians)<br/>exp[x] : e^x (exponential/antilogarithm function with base e)<br/>floor[x] : Floor of x — the largest integer that’s <= x<br/>ln[x] : Natural logarithm of x<br/>log[x] : Natural logarithm of x (synonym for ln, not base-10)<br/>log10[x] :	Base-10 logarithm of x<br/>log2[x] : Base-2 logarithm of x<br/>round[x] :	X, rounded to the nearest integer<br/>sign[x] : Sign of x (-1, 0, or 1 for negative, zero, or positive respectively)<br/>sin[x] : Sine of x (x is in radians)<br/>sinh[x] : Hyperbolic sine of x (x is in radians)<br/>sqrt[x] : Square root of x. Result is NaN (Not a Number) if x is negative.<br/>tan[x] : Tangent of x (x is in radians)<br/>tanh[x] : Hyperbolic tangent of x (x is in radians)<br/> <br/><br/>Pre-defined functions:<br/>random(n) : Get a random number in the range [0, n). If n is zero, or not provided, it defaults to 1.<br/>fac(n)	n! : (factorial of n: \"n * (n-1) * (n-2) * … * 2 * 1\") Deprecated. Use the ! operator instead.<br/>min(a,b,…) : Get the smallest (minimum) number in the list.<br/>max(a,b,…) : Get the largest (maximum) number in the list.<br/>hypot(a,b) : Hypotenuse, i.e. the square root of the sum of squares of its arguments.<br/>pyt(a, b) : Alias for hypot.<br/>pow(x, y) : Equivalent to x^y.<br/>roundTo(x, n) : Rounds x to n places after the decimal point.<br/><br/>Constants: <br/>E : The value of Math.E from your JavaScript runtime.<br/>PI : The value of Math.PI from your JavaScript runtime.<br/><br/>Variable assignments : <br/>declare variable and assign a value: x=1  declared variable can be used in further calculation x+2.<br/><br/>clear command for clearing calculator app.<br/><br/>exit command for exit from calculator app. ";
-                break;                
-            default: 
-                result = this.evaluteExp(command);                    
-        }
-        document.getElementById(`row-calculator-result-${rowId}`).innerHTML = result;
-        this.appendTerminalRow();
-    }
-    evaluteExp = (command) => {
-        let result = "";
-        let expr;
-            try{
-                expr=parser.parse(command)
-                try{
-                    result = parser.evaluate(command,this.variables)
-                    if(expr.tokens.length===2&&expr.tokens[2].type==="IOP2")
-                    this.variables[expr.variables()[0]]=result
-                }
-                catch (e) {
-                    result = e.message;
-                }
-            }
-            catch(e){
-                result="Invalid Expression"
-            }    
-        return result;
-    }
-    xss(str) {
-        if (!str) return;
-        return str.split('').map(char => {
-            switch (char) {
-                case '&':
-                    return '&amp';
-                case '<':
-                    return '&lt';
-                case '>':
-                    return '&gt';
-                case '"':
-                    return '&quot';
-                case "'":
-                    return '&#x27';
-                case '/':
-                    return '&#x2F';
-                default:
-                    return char;
-            }
-        }).join('');
-    }
-    
 
     render() {
+        const { expression, result, error, justEvaluated } = this.state;
+
+        const num = 'bg-gray-700 hover:bg-gray-600 text-white';
+        const op = 'bg-ub-cool-grey hover:bg-gray-500 text-white';
+        const fn = 'bg-gray-800 hover:bg-gray-700 text-blue-400 text-xs';
+        const accent = 'bg-ub-orange hover:opacity-90 text-white';
+        const eq = 'bg-green-700 hover:bg-green-600 text-white';
+        const clr = 'bg-red-700 hover:bg-red-600 text-white';
+
         return (
-            <div className="h-full w-full bg-ub-drk-abrgn text-ubt-grey opacity-100 p-1 float-left font-normal">
-                <div>C-style arbitary precision calculator (version 2.12.7.2)</div>
-                <div>Calc is open software.</div>
-                <div>[ type "exit" to exit, "clear" to clear, "help" for help.]</div>
-            <div className="text-white text-sm font-bold bg-ub-drk-abrgn" id="calculator-body">
-                {this.state.terminal}
+            <div className="h-full w-full flex flex-col bg-ub-grey text-white select-none overflow-hidden">
+                {/* Display */}
+                <div className="flex flex-col justify-end px-4 py-3 bg-black bg-opacity-40 border-b border-gray-800" style={{ minHeight: '5.5rem' }}>
+                    <div className="text-right text-gray-400 text-xs truncate h-4 mb-1">
+                        {justEvaluated ? expression + ' =' : expression || '\u00A0'}
+                    </div>
+                    <div className={'text-right text-3xl font-light truncate ' + (error ? 'text-red-400' : 'text-white')}>
+                        {result}
+                    </div>
+                </div>
+
+                {/* Buttons grid */}
+                <div className="flex-1 grid grid-cols-5 gap-1 p-2">
+                    {/* Row 1 – trig */}
+                    {this.renderButton('sin', fn)}
+                    {this.renderButton('cos', fn)}
+                    {this.renderButton('tan', fn)}
+                    {this.renderButton('ln', fn)}
+                    {this.renderButton('log', fn)}
+
+                    {/* Row 2 – inv trig + roots */}
+                    {this.renderButton('asin', fn)}
+                    {this.renderButton('acos', fn)}
+                    {this.renderButton('atan', fn)}
+                    {this.renderButton('√', fn)}
+                    {this.renderButton('x²', fn)}
+
+                    {/* Row 3 – constants + power + factorial */}
+                    {this.renderButton('π', fn)}
+                    {this.renderButton('e', fn)}
+                    {this.renderButton('xʸ', op)}
+                    {this.renderButton('!', op)}
+                    {this.renderButton('%', op)}
+
+                    {/* Row 4 – clear + parens + divide */}
+                    {this.renderButton('C', clr)}
+                    {this.renderButton('CE', accent)}
+                    {this.renderButton('(', op)}
+                    {this.renderButton(')', op)}
+                    {this.renderButton('/', op)}
+
+                    {/* Row 5 – 7 8 9 * +/- */}
+                    {this.renderButton('7', num)}
+                    {this.renderButton('8', num)}
+                    {this.renderButton('9', num)}
+                    {this.renderButton('*', op)}
+                    {this.renderButton('+/-', op)}
+
+                    {/* Row 6 – 4 5 6 - */}
+                    {this.renderButton('4', num)}
+                    {this.renderButton('5', num)}
+                    {this.renderButton('6', num)}
+                    {this.renderButton('-', op)}
+                    <div></div>
+
+                    {/* Row 7 – 1 2 3 + = */}
+                    {this.renderButton('1', num)}
+                    {this.renderButton('2', num)}
+                    {this.renderButton('3', num)}
+                    {this.renderButton('+', op)}
+                    {this.renderButton('=', eq)}
+
+                    {/* Row 8 – 0 . */}
+                    {this.renderButton('0', num + ' col-span-2')}
+                    <div></div>
+                    {this.renderButton('.', num)}
+                    <div></div>
+                </div>
             </div>
-            </div>
-        )
+        );
     }
 }
 
 export default Calc
 
-export const displayTerminalCalc = (addFolder,openApp) => {
-    return <Calc addFolder={addFolder} openApp={openApp}> </Calc>;
+export const displayTerminalCalc = (addFolder, openApp) => {
+    return <Calc addFolder={addFolder} openApp={openApp} />;
 }
