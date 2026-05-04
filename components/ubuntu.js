@@ -12,7 +12,8 @@ export default class Ubuntu extends Component {
 			screen_locked: false,
 			bg_image_name: 'wall-2',
 			booting_screen: true,
-			shutDownScreen: false
+			shutDownScreen: false,
+			clockFormat: '12h',
 		};
 	}
 
@@ -27,7 +28,12 @@ export default class Ubuntu extends Component {
 	};
 
 	getLocalData = () => {
-		// Get Previously selected Background Image
+		// Get previously saved clock format
+		let clockFormat = localStorage.getItem('clock-format');
+		if (clockFormat !== null && clockFormat !== undefined) {
+			this.setState({ clockFormat });
+		}
+
 		let bg_image_name = localStorage.getItem('bg-image');
 		if (bg_image_name !== null && bg_image_name !== undefined) {
 			this.setState({ bg_image_name });
@@ -85,6 +91,11 @@ export default class Ubuntu extends Component {
 		localStorage.setItem('bg-image', img_name);
 	};
 
+	changeClockFormat = (format) => {
+		this.setState({ clockFormat: format });
+		localStorage.setItem('clock-format', format);
+	};
+
 	shutDown = () => {
 		ReactGA.send({ hitType: "pageview", page: "/switch-off", title: "Custom Title" });
 
@@ -119,8 +130,8 @@ export default class Ubuntu extends Component {
 					isShutDown={this.state.shutDownScreen}
 					turnOn={this.turnOn}
 				/>
-				<Navbar lockScreen={this.lockScreen} shutDown={this.shutDown} />
-				<Desktop bg_image_name={this.state.bg_image_name} changeBackgroundImage={this.changeBackgroundImage} />
+				<Navbar lockScreen={this.lockScreen} shutDown={this.shutDown} clockFormat={this.state.clockFormat} />
+				<Desktop bg_image_name={this.state.bg_image_name} changeBackgroundImage={this.changeBackgroundImage} clockFormat={this.state.clockFormat} changeClockFormat={this.changeClockFormat} />
 			</div>
 		);
 	}
