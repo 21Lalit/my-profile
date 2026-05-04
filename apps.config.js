@@ -7,7 +7,7 @@ import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
 import { displayAboutLalit } from './components/apps/lalit';
 import { displayTerminalCalc } from './components/apps/calc';
-import Todoist from './components/apps/todoist';
+import { displayTodoist } from './components/apps/todoist';
 import { displayYoutube } from './components/apps/youtube';
 
 const apps = [
@@ -110,7 +110,7 @@ const apps = [
         disabled: false,
         favourite: true,
         desktop_shortcut: false,
-        screen: () => <Todoist />,
+        screen: displayTodoist,
     },
     {
         id: "youtube",
