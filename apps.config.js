@@ -7,6 +7,8 @@ import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
 import { displayAboutLalit } from './components/apps/lalit';
 import { displayTerminalCalc } from './components/apps/calc';
+import { displayTodoist } from './components/apps/todoist';
+import { displayYoutube } from './components/apps/youtube';
 
 const apps = [
     {
@@ -99,6 +101,35 @@ const apps = [
         desktop_shortcut: true,
         isExternalApp: true,
         url: "https://github.com/21Lalit",
+        screen: () => {},
+    },
+    {
+        id: "todo-ist",
+        title: "Todoist",
+        icon: './themes/Yaru/apps/todoist.png',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: false,
+        screen: displayTodoist,
+    },
+    {
+        id: "youtube",
+        title: "YouTube",
+        icon: './themes/Yaru/apps/youtube.svg',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: true,
+        screen: displayYoutube,
+    },
+    {
+        id: "linkedin",
+        title: "LinkedIn",
+        icon: './themes/Yaru/apps/linkedin.svg',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        isExternalApp: true,
+        url: "https://www.linkedin.com/in/lalit-patel-0aa7741b5/",
         screen: () => {},
     },
 ]

@@ -19,6 +19,7 @@ export class AboutLalit extends Component {
             "education": <Education />,
             "skills": <Skills />,
             "projects": <Projects />,
+            "certifications": <Certifications />,
             "resume": <Resume />,
         }
 
@@ -69,6 +70,10 @@ export class AboutLalit extends Component {
                 <div id="projects" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "projects" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="lalit' projects" src="./themes/Yaru/status/projects.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Projects</span>
+                </div>
+                <div id="certifications" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "certifications" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="lalit' certifications" src="./themes/Yaru/status/skills.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Certifications</span>
                 </div>
                 <div id="resume" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "resume" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="lalit's resume" src="./themes/Yaru/status/download.svg" />
@@ -225,6 +230,11 @@ function Skills() {
                         <img className="m-1" src="https://img.shields.io/badge/Aircrack--ng-007396?style=for-the-badge&logoColor=white" alt="Lalit aircrack-ng" />
                         <img className="m-1" src="https://img.shields.io/badge/OpenVAS-008000?style=for-the-badge&logoColor=white" alt="Lalit openVAS" />
                         <img className="m-1" src="https://img.shields.io/badge/Splunk-000000?style=for-the-badge&logo=splunk&logoColor=white" alt="Lalit splunk" />
+                        <img className="m-1" src="https://img.shields.io/badge/Nikto-CC0000?style=for-the-badge&logoColor=white" alt="Lalit nikto" />
+                        <img className="m-1" src="https://img.shields.io/badge/SQLMap-000000?style=for-the-badge&logoColor=white" alt="Lalit sqlmap" />
+                        <img className="m-1" src="https://img.shields.io/badge/Hashcat-FF0000?style=for-the-badge&logoColor=white" alt="Lalit hashcat" />
+                        <img className="m-1" src="https://img.shields.io/badge/Volatility-6A0DAD?style=for-the-badge&logoColor=white" alt="Lalit volatility" />
+                        <img className="m-1" src="https://img.shields.io/badge/theHarvester-FF8C00?style=for-the-badge&logoColor=white" alt="Lalit theHarvester" />
                     </div>
                 </div>
             </div>
@@ -240,6 +250,7 @@ function Skills() {
                     <div className="flex flex-wrap justify-center items-start w-full mt-2">
                         <img className=" m-1" src="https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white" alt="Lalit kali linux" />
                         <img className=" m-1" src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Lalit ubuntu" />
+                        <img className="m-1" src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Lalit windows" />
                         <img className="m-1" src="https://img.shields.io/badge/VirtualBox-183A61?style=for-the-badge&logo=virtualbox&logoColor=white" alt="Lalit virtualbox" />
                     </div>
                 </div>
@@ -249,6 +260,21 @@ function Skills() {
                     <div className="flex flex-wrap justify-center items-start w-full mt-2">
                         <img className=" m-1" src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Lalit git" />
                         <img className=" m-1" src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="Lalit github" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Third Row: Platforms */}
+            <div className="w-full md:w-10/12 flex flex-wrap mt-6">
+                <div className="w-full px-2 text-center font-bold text-sm md:text-base">🎯 Cybersecurity Platforms & Practice</div>
+            </div>
+            <div className="w-full md:w-10/12 flex flex-wrap justify-center items-start font-bold text-center">
+                <div className="px-2 w-full">
+                    <div className="flex flex-wrap justify-center items-start w-full mt-2">
+                        <img className="m-1" src="https://img.shields.io/badge/TryHackMe-212C42?style=for-the-badge&logo=tryhackme&logoColor=white" alt="Lalit tryhackme" />
+                        <img className="m-1" src="https://img.shields.io/badge/HackTheBox-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black" alt="Lalit hackthebox" />
+                        <img className="m-1" src="https://img.shields.io/badge/PortSwigger-FF6F00?style=for-the-badge&logoColor=white" alt="Lalit portswigger" />
+                        <img className="m-1" src="https://img.shields.io/badge/OWASP-000000?style=for-the-badge&logo=owasp&logoColor=white" alt="Lalit owasp" />
                     </div>
                 </div>
             </div>
@@ -266,11 +292,20 @@ function Skills() {
 function Projects() {
     const project_list = [
         {
+            name: "VAPT Report – Web Application Security Assessment",
+            date: "Mar 2025",
+            link: "https://github.com/21Lalit",
+            description: [
+                "Conducted a comprehensive Vulnerability Assessment and Penetration Testing (VAPT) engagement on a web application. Identified and documented OWASP Top 10 vulnerabilities including SQL Injection, XSS, and IDOR. Prepared a detailed technical report with risk ratings and remediation recommendations.",
+            ],
+            domains: ["VAPT", "Burp Suite", "OWASP"]
+        },
+        {
             name: "Cisco Packet Tracer - Networking Projects",
-            date: "Sp 2024",
+            date: "Dec 2024",
             link: "https://github.com/21Lalit/Networking-projects",
             description: [
-                "This repository contains This repository provides a comprehensive learning experience, taking you from beginner to advanced networking concepts with practical simulations and real-world configurations. Each project includes a detailed README.md to guide your understanding step-by-step.",
+                "A comprehensive networking lab built using Cisco Packet Tracer, covering beginner to advanced concepts — VLANs, routing protocols (OSPF, EIGRP), ACLs, NAT, and network segmentation. Each project includes a detailed README to guide understanding step-by-step.",
             ],
             domains: ["CCNA", "Cisco Networking"]
         },
@@ -279,16 +314,16 @@ function Projects() {
             date: "Jun 2024",
             link: "https://github.com/21Lalit/Powershell-Scripting/tree/main/File%20Integrity%20Checker",
             description: [
-                "The PowerShell File Integrity Checker compares the hash values of an original file and a received file, alerting users if the received file has been modified. This ensures file integrity during transfers or updates. I tested the tool by adding a space in Notepad, and the hash value changed, confirming that the file was modified.",
+                "A PowerShell tool that computes and compares SHA hash values of files to detect unauthorized modifications during transfers or updates. Useful in forensic investigations and compliance scenarios.",
             ],
-            domains: ["Powershell Scripting"]
+            domains: ["Powershell Scripting", "Computer Forensics"]
         },
         {
             name: "User Activity Monitoring (Windows Forensic)",
             date: "Jun 2024",
             link: "https://github.com/21Lalit/Powershell-Scripting/tree/main/User%20Log%20Activities",
             description: [
-                "This involves a simple PowerShell script that logs key user activities on a Windows system, such as login times, running processes, and active windows. The script can save the logged information into files for analysis or auditing purposes.",
+                "A PowerShell script that logs key user activities on Windows — login times, running processes, and active windows — saving output for forensic analysis or security auditing.",
             ],
             domains: ["Powershell Scripting", "Computer Forensics"]
         },
@@ -297,7 +332,7 @@ function Projects() {
             date: "May 2024",
             link: "https://github.com/21Lalit/Batch-Scripting/tree/main/Password-Strength-Checker",
             description: [
-                "The Password Strength Checker is a Batch script tool that evaluates the strength of a password based on criteria such as length, character variety (uppercase, lowercase, digits, and special characters), and overall complexity. It provides users with feedback on the strength of their passwords, encouraging the creation of more secure credentials to enhance data protection.",
+                "A Batch script that evaluates password strength based on length, uppercase/lowercase, digits, and special characters. Provides instant feedback to encourage secure credential practices.",
             ],
             domains: ["Windows Batch Scripting"]
         },
@@ -306,7 +341,7 @@ function Projects() {
             date: "Oct 2023",
             link: "https://github.com/21Lalit",
             description: [
-                "Developed a comprehensive photography website utilizing Bootstrap for responsive design, alongside HTML, CSS, and JavaScript for front-end development. Implemented PHP and MySQL for dynamic content management and data storage, hosted on an Apache2 server. This project showcases a blend of technical skills in web development and design, emphasizing a user-friendly interface and visually appealing presentation of photographic works.",
+                "A full-stack photography showcase website built with Bootstrap, HTML, CSS, JavaScript, PHP, and MySQL, hosted on Apache2. Features dynamic content management and a responsive, visually appealing gallery.",
             ],
             domains: ["PHP", "Apache", "Bootstrap", "CSS", "HTML", "javascript"]
         },
@@ -315,18 +350,10 @@ function Projects() {
             date: "Nov 2022",
             link: "https://github.com/21Lalit",
             description: [
-                "Created a basic library management system using HTML, CSS, JavaScript, and Bootstrap. The project featured a responsive design and allowed users to view and search for books, demonstrating foundational web development skills.",
+                "A responsive library management web app using HTML, CSS, JavaScript, and Bootstrap — enabling users to view and search a book catalogue.",
             ],
             domains: ["HTML", "CSS", "javascript"]
         },
-        {
-            name: "College Website",
-            date: "Dec 2020",
-            link: "https://github.com/21Lalit",
-            description: [
-                "Designed and developed the frontend of the college website using HTML and CSS, incorporating a responsive layout and a feature for online fee payment.",
-            ],
-        }
     ];
 
     const tag_colors = {
@@ -345,7 +372,20 @@ function Projects() {
         "python": "green-200",
         "codeforces-api": "gray-300",
         "tailwindcss": "blue-300",
-        "next.js": "purple-600"
+        "next.js": "purple-600",
+        "VAPT": "red-400",
+        "Burp Suite": "yellow-500",
+        "OWASP": "blue-400",
+        "Computer Forensics": "purple-300",
+        "CCNA": "blue-500",
+        "Cisco Networking": "blue-600",
+        "Powershell Scripting": "blue-300",
+        "Windows Batch Scripting": "gray-400",
+        "PHP": "indigo-400",
+        "Apache": "red-500",
+        "Bootstrap": "purple-500",
+        "CSS": "blue-400",
+        "HTML": "orange-400",
     }
 
     return (
@@ -397,6 +437,77 @@ function Projects() {
             }
         </>
     )
+}
+function Certifications() {
+    const certifications = [
+        {
+            name: "Certified Ethical Hacker (CEH)",
+            issuer: "EC-Council",
+            date: "2024",
+            link: "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/",
+            description: "Validates skills in ethical hacking methodologies, penetration testing, and information security assessment.",
+        },
+        {
+            name: "Jr Penetration Tester",
+            issuer: "TryHackMe",
+            date: "2024",
+            link: "https://tryhackme.com/path/outline/jrpenetrationtester",
+            description: "Completed the Jr Penetration Tester learning path covering web hacking, network exploitation, privilege escalation, and post-exploitation.",
+        },
+        {
+            name: "Web Application Security Testing",
+            issuer: "PortSwigger Web Security Academy",
+            date: "2024",
+            link: "https://portswigger.net/web-security",
+            description: "Completed labs and topics covering SQL Injection, XSS, CSRF, SSRF, Access Control, and other OWASP Top 10 vulnerabilities using Burp Suite.",
+        },
+        {
+            name: "Cyber Security Internship",
+            issuer: "M Cyber Academy",
+            date: "2023 - 2024",
+            link: "https://www.mcyberacademy.com",
+            description: "1+ year of hands-on experience in Cyber Security including VAPT, security audits, and vulnerability analysis of web applications.",
+        },
+        {
+            name: "CCNA: Introduction to Networks",
+            issuer: "Cisco Networking Academy",
+            date: "2024",
+            link: "https://www.netacad.com/courses/networking/ccna-introduction-networks",
+            description: "Completed foundational networking course covering OSI model, IP addressing, routing, switching, and network configuration with Cisco Packet Tracer.",
+        },
+        {
+            name: "Google Cybersecurity Certificate",
+            issuer: "Google / Coursera",
+            date: "2024",
+            link: "https://www.coursera.org/professional-certificates/google-cybersecurity",
+            description: "Covered foundations of cybersecurity, network security, Linux & SQL for security, assets, threats and vulnerabilities, detection and response, and automation with Python.",
+        },
+    ];
+
+    return (
+        <>
+            <div className=" font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+                Certifications
+                <div className="absolute pt-px bg-white mt-px top-full w-full">
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+                </div>
+            </div>
+            <ul className="w-10/12 mt-4 ml-4 px-0 md:px-1">
+                {certifications.map((cert, index) => (
+                    <li key={index} className="list-disc mt-5">
+                        <a href={cert.link} target="_blank" rel="noreferrer" className="hover:underline">
+                            <div className="text-lg md:text-xl text-left font-bold leading-tight text-ubt-gedit-orange">
+                                {cert.name}
+                            </div>
+                        </a>
+                        <div className="text-sm text-gray-400 mt-0.5">{cert.issuer} &mdash; {cert.date}</div>
+                        <div className="text-sm md:text-base text-gray-200 mt-1">{cert.description}</div>
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
 }
 function Resume() {
     return (

@@ -6,7 +6,6 @@ export default class Clock extends Component {
         this.month_list = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         this.day_list = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         this.state = {
-            hour_12: true,
             current_time: new Date()
         };
     }
@@ -35,16 +34,24 @@ export default class Clock extends Component {
             minute = "0" + minute
         }
 
-        if (this.state.hour_12 && hour > 12) hour -= 12;
+        const use12h = this.props.clockFormat !== "24h";
+        if (use12h && hour > 12) hour -= 12;
+        if (use12h && hour === 0) hour = 12;
 
         let display_time;
         if (this.props.onlyTime) {
-            display_time = hour + ":" + minute + " " + meridiem;
+            display_time = use12h
+                ? hour + ":" + minute + " " + meridiem
+                : hour + ":" + minute;
         }
         else if (this.props.onlyDay) {
             display_time = day + " " + month + " " + date;
         }
-        else display_time = day + " " + month + " " + date + " " + hour + ":" + minute + " " + meridiem;
+        else {
+            display_time = use12h
+                ? day + " " + month + " " + date + " " + hour + ":" + minute + " " + meridiem
+                : day + " " + month + " " + date + " " + hour + ":" + minute;
+        }
         return <span>{display_time}</span>;
     }
 }

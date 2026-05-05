@@ -28,7 +28,7 @@ export default class Navbar extends Component {
 						'pl-2 pr-2 text-xs md:text-sm outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-orange py-1'
 					}
 				>
-					<Clock />
+					<Clock clockFormat={this.props.clockFormat} />
 				</div>
 				<div
 					id="status-bar"
