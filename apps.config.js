@@ -129,7 +129,7 @@ const apps = [
         favourite: false,
         desktop_shortcut: true,
         isExternalApp: true,
-        url: "https://www.linkedin.com/in/lalit-patel-0aa7741b5/",
+        url: "https://www.linkedin.com/in/lalitrohilla",
         screen: () => {},
     },
 ]
