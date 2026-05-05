@@ -442,9 +442,9 @@ function Certifications() {
     const certifications = [
         {
             name: "Certified Ethical Hacker (CEH)",
-            issuer: "EC-Council",
+            issuer: "Cisco Networking Academy",
             date: "2024",
-            link: "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/",
+            link: "https://www.netacad.com/courses/ethical-hacker",
             description: "Validates skills in ethical hacking methodologies, penetration testing, and information security assessment.",
         },
         {
