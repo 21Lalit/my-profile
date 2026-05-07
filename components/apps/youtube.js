@@ -8,7 +8,7 @@ export default function Youtube() {
                 <a
                     href="https://www.youtube.com/@LiveOverflow/videos"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="text-ubt-blue hover:underline"
                 >
                     Open in new tab

@@ -446,7 +446,7 @@ function PlaylistDetailView({ playlist, onBack }) {
                 <a
                     href={externalUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     style={{
                         marginLeft: 'auto',
                         color: '#1db954',

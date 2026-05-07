@@ -8,7 +8,7 @@ export default function Todoist() {
                 <a
                     href="https://app.todoist.com/app/today"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="text-ubt-blue hover:underline"
                 >
                     Open in new tab
