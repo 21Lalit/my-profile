@@ -1,5 +1,22 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
+let fallbackIdCounter = 0;
+
+const createId = () => {
+    if (typeof globalThis !== 'undefined' && globalThis.crypto) {
+        if (typeof globalThis.crypto.randomUUID === 'function') {
+            return globalThis.crypto.randomUUID();
+        }
+        if (typeof globalThis.crypto.getRandomValues === 'function') {
+            const bytes = new Uint8Array(16);
+            globalThis.crypto.getRandomValues(bytes);
+            return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+        }
+    }
+    fallbackIdCounter += 1;
+    return `fallback-${Date.now()}-${fallbackIdCounter}`;
+};
+
 export default function Todoist() {
     const [tasks, setTasks] = useState([]);
     const [value, setValue] = useState('');
@@ -10,7 +27,7 @@ export default function Todoist() {
 
         let sessionId = window.sessionStorage.getItem('todo-session-id');
         if (!sessionId) {
-            sessionId = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+            sessionId = createId();
             window.sessionStorage.setItem('todo-session-id', sessionId);
         }
 
@@ -40,7 +57,7 @@ export default function Todoist() {
         const text = value.trim();
         if (!text) return;
 
-        setTasks((prev) => [...prev, { id: Date.now() + Math.random(), text, done: false }]);
+        setTasks((prev) => [...prev, { id: createId(), text, done: false }]);
         setValue('');
     };
 
