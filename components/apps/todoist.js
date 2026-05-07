@@ -37,8 +37,8 @@ export default function Todoist() {
         const saved = window.sessionStorage.getItem(key);
         if (saved) {
             try {
-            const parsed = JSON.parse(saved);
-            if (Array.isArray(parsed)) setTasks(parsed);
+                const parsed = JSON.parse(saved);
+                if (Array.isArray(parsed)) setTasks(parsed);
             } catch (error) {
                 console.error('Failed to parse session todo data:', error);
                 window.sessionStorage.removeItem(key);
