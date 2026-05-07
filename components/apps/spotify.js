@@ -628,3 +628,7 @@ export default function Spotify() {
         </div>
     )
 }
+
+export const displaySpotify = () => {
+    return <Spotify />;
+}
