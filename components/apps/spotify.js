@@ -414,6 +414,8 @@ function SearchView({ onSelectPlaylist }) {
 
 // ─── Playlist detail view ──────────────────────────────────────────────────────
 function PlaylistDetailView({ playlist, onBack }) {
+    const externalUrl = `https://open.spotify.com/playlist/${playlist.id}`
+
     return (
         <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
             {/* Header */}
@@ -441,6 +443,21 @@ function PlaylistDetailView({ playlist, onBack }) {
                     <div style={{ color: '#fff', fontSize: '16px', fontWeight: '800' }}>{playlist.name}</div>
                     <div style={{ color: '#b3b3b3', fontSize: '11px', marginTop: '2px' }}>{playlist.desc}</div>
                 </div>
+                <a
+                    href={externalUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                        marginLeft: 'auto',
+                        color: '#1db954',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        whiteSpace: 'nowrap',
+                    }}
+                >
+                    Open in Spotify ↗
+                </a>
             </div>
 
             {/* Embed */}
