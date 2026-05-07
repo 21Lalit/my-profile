@@ -6,7 +6,7 @@ export default function Youtube() {
             <div className="flex items-center justify-between px-4 py-2 text-white text-sm bg-black bg-opacity-20">
                 <span>YouTube</span>
                 <a
-                    href="https://www.youtube.com/@LiveOverflow/videos"
+                    href="https://www.youtube.com/watch?v=cqw3n1fEECU"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-ubt-blue hover:underline"
@@ -15,7 +15,7 @@ export default function Youtube() {
                 </a>
             </div>
             <iframe
-                src="https://www.youtube-nocookie.com/embed/videoseries?list=UUlcE-kVhqyiHCcjYwcpfj9w"
+                src="https://www.youtube-nocookie.com/embed/cqw3n1fEECU"
                 style={{ border: 'none' }}
                 title="YouTube"
                 className="h-full w-full bg-ub-cool-grey"
