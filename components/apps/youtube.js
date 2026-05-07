@@ -15,7 +15,7 @@ export default function Youtube() {
                 </a>
             </div>
             <iframe
-                src="https://www.youtube-nocookie.com/embed?listType=user_uploads&list=LiveOverflow"
+                src="https://www.youtube-nocookie.com/embed/videoseries?list=UUMACUMxAbXmudfrmEVBIeWw"
                 style={{ border: 'none' }}
                 title="YouTube"
                 className="h-full w-full bg-ub-cool-grey"

@@ -16,7 +16,7 @@ export default function Todoist() {
             </div>
             <iframe
                 src="https://app.todoist.com/app/today"
-                frameBorder="0"
+                style={{ border: 'none' }}
                 title="Todoist"
                 className="h-full w-full"
             ></iframe>
