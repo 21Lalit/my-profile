@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 let fallbackIdCounter = 0;
 
@@ -37,9 +37,10 @@ export default function Todoist() {
         const saved = window.sessionStorage.getItem(key);
         if (saved) {
             try {
-                const parsed = JSON.parse(saved);
-                if (Array.isArray(parsed)) setTasks(parsed);
-            } catch (_) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed)) setTasks(parsed);
+            } catch (error) {
+                console.error('Failed to parse session todo data:', error);
                 window.sessionStorage.removeItem(key);
             }
         }
@@ -50,7 +51,7 @@ export default function Todoist() {
         window.sessionStorage.setItem(storageKey, JSON.stringify(tasks));
     }, [tasks, storageKey]);
 
-    const remaining = useMemo(() => tasks.filter((task) => !task.done).length, [tasks]);
+    const remaining = tasks.filter((task) => !task.done).length;
 
     const addTask = (e) => {
         e.preventDefault();
